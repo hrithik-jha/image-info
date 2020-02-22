@@ -8,6 +8,7 @@ img = cv2.imread('C:\\Users\\Hrithik Jha\\image-info\\video-extraction\\data\\fr
 color = ('b','g','r')
 for i,col in enumerate(color):
     histr = cv2.calcHist([img],[i],None,[256],[0,256])
+    print(histr, histr.shape)
     plt.plot(histr,color = col)
     plt.xlim([0,256])
 plt.show()
