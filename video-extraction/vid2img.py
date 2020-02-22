@@ -1,9 +1,6 @@
 # Importing all necessary libraries 
 import cv2 
 import os 
-  
-# Read the video from specified path 
-cam = cv2.VideoCapture("videos/") 
 
 try: 
     # creating a folder named data 
@@ -14,27 +11,19 @@ try:
 except OSError: 
     print ('Error: Creating directory of data') 
   
-# frame 
-currentframe = 0
-  
-while(True): 
-    # reading from frame 
-    ret,frame = cam.read() 
-  
-    if ret: 
-        # if video is still left continue creating images 
-        name = './data/frame' + str(currentframe) + '.jpg'
-        print ('Creating...' + name) 
-  
-        # writing the extracted images 
-        cv2.imwrite(name, frame) 
-  
-        # increasing counter so that it will 
-        # show how many frames are created 
-        currentframe += 1
-    else: 
-        break
+vidcap = cv2.VideoCapture('F:\HexChat\config\scrollback\servlog\lp\lpgmfh.mp4')
+count = 0
+success = True
+fps = int(vidcap.get(cv2.CAP_PROP_FPS))
+
+
+while success:
+    success,image = vidcap.read()
+    if count % (2 * fps) == 0 :
+         cv2.imwrite('./data/frame%d.jpg'%count,image)
+         print('Saved image ', count)
+    count+=1
   
 # Release all space and windows once done 
-cam.release() 
+vidcap.release() 
 cv2.destroyAllWindows() 
