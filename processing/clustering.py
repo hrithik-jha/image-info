@@ -1,28 +1,30 @@
-# import the necessary packages
-from scipy.spatial import distance as dist
-import matplotlib.pyplot as plt
 import numpy as np
-import argparse
-import glob
-import cv2
+from scipy.cluster.hierarchy import fclusterdata
 from os import walk
-
-# initialize the index dictionary to store the image name
-# and corresponding histograms and the images dictionary
-# to store the images themselves
-index = {}
-images = {}
+import cv2
 
 path = "C:\\Users\\Hrithik Jha\\image-info\\video-extraction\\data"
+
+index = {}
+images = {}
+# A custom distance function
+def distance(i, j):
+    #print(i[0], j[0])
+    #print(f[int(i[0])], f[int(j[0])])
+    dist = cv2.compareHist(index[f[int(i[0])]], index[f[int(j[0])]], cv2.HISTCMP_CORREL)
+    return max(-1*dist, 0)
 
 f = []
 for (dirpath, dirnames, filenames) in walk(path):
     f.extend(filenames)
     break
 
-print(f)
+dSet = []
 
-# loop over the image paths
+for i in range(0, len(f)):
+    buff = [i, 0]
+    dSet.append(buff)
+
 for imagePath in f:
     # extract the image filename (assumed to be unique) and
     # load the image, updating the images dictionary
@@ -37,37 +39,7 @@ for imagePath in f:
     hist = cv2.normalize(hist, hist).flatten()
     index[filename] = hist
 
-results = {}
-reverse = True
-methodName = 'Correlation'
+print(dSet)
+fclust = fclusterdata(dSet, 1.0, metric=distance)
 
-# loop over the index
-for (k, hist) in index.items():
-	# compute the distance between the two histograms
-	# using the method and update the results dictionary
-	d = cv2.compareHist(index["frame1450.jpg"], hist, cv2.HISTCMP_CORREL)
-	results[k] = d
-# sort the results
-results = sorted([(v, k) for (k, v) in results.items()], reverse = reverse)
-
-print(images)
-
-# show the query image
-fig = plt.figure("Query")
-ax = fig.add_subplot(1, 1, 1)
-ax.imshow(images['frame1450.jpg'])
-plt.axis("off")
-# initialize the results figure
-fig = plt.figure("Results: %s" % (methodName))
-# fig.suptitle(methodName, fontsize = 20)
-# loop over the results
-for (i, (v, k)) in enumerate(results[0:10]):
-	# show the result
-    ax = fig.add_subplot(1, len(images), i + 1)
-    # ax.set_title("%s: %.2f" % (k, v))
-    plt.figure(figsize = (20,20))
-    plt.imshow(images[k])    
-    
-    plt.axis("off")
-# show the OpenCV methods
-plt.show()
+print(fclust)
