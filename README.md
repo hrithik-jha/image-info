@@ -2,11 +2,11 @@
 
 ## Running
 
-`cd video-extraction`
-`python vid2img.py`
-`cd ..`
-`cd processing`
-`python clustering.py`
+`cd video-extraction`\
+`python vid2img.py`\
+`cd ..`\
+`cd processing`\
+`python clustering.py`\
 Check out result.
 
 TO FIX: All images being assigned in the same cluster.
