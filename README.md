@@ -2,7 +2,7 @@
 
 ## Running
 ### With Pipeline
-`python main.py`\
+`python main.py`
 
 ### Without Pipeline
 `cd video-extraction`\
