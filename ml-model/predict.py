@@ -18,12 +18,12 @@ def predictGenre(tar=TARGET):
 
     train = pd.read_csv('./dataset/train.csv')
 
-
     img = image.load_img(tar ,target_size=(200,200,3))
     img = image.img_to_array(img)
     img = img/255
 
 
+    # Classes need to be hardcoded, no need for reading. Plus Drama needs to be removed.
     classes = np.array(train.columns[2:])
     proba = loaded_model.predict(img.reshape(1,200,200,3))
     top_3 = np.argsort(proba[0])[:-4:-1]

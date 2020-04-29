@@ -52,6 +52,10 @@ results = sorted([(v, k) for (k, v) in results.items()], reverse = reverse)
 print(results)
 #print(images)
 
+'''
+THIS IS THE CURRENT CLUTERING ARRANGEMENT
+IT NEEDS TO BE AUTOMATED
+'''
 # show the query image
 fig = plt.figure("Query")
 ax = fig.add_subplot(1, 1, 1)
@@ -60,8 +64,11 @@ plt.axis("off")
 # initialize the results figure
 fig = plt.figure("Results: %s" % (methodName))
 # fig.suptitle(methodName, fontsize = 20)
+
+
 # loop over the results
 '''
+# Prints all images in a cluster
 for (i, (v, k)) in enumerate(results[0:10]):
 	# show the result
     ax = fig.add_subplot(1, len(images), i + 1)
