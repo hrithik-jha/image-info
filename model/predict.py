@@ -29,3 +29,5 @@ def predictGenre(tar=TARGET):
     top_3 = np.argsort(proba[0])[:-4:-1]
     for i in range(3):
         print("{}".format(classes[top_3[i]])+" ({:.3})".format(proba[0][top_3[i]]))
+
+predictGenre()
