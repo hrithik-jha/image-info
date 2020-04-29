@@ -2,6 +2,8 @@
 import cv2 
 import os 
 
+LOC = 'F:\HexChat\config\scrollback\servlog\lp\lpgmfh.mp4'
+
 try: 
     # creating a folder named data 
     if not os.path.exists('data'): 
@@ -11,7 +13,7 @@ try:
 except OSError: 
     print ('Error: Creating directory of data') 
   
-vidcap = cv2.VideoCapture('F:\HexChat\config\scrollback\servlog\lp\lpgmfh.mp4')
+vidcap = cv2.VideoCapture(LOC)
 count = 0
 success = True
 fps = int(vidcap.get(cv2.CAP_PROP_FPS))
