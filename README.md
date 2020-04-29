@@ -1,7 +1,10 @@
 # Thumbnail Personalization
 
 ## Running
+### With Pipeline
+`python main.py`\
 
+### Without Pipeline
 `cd video-extraction`\
 `python vid2img.py`\
 `cd ..`\
@@ -9,7 +12,7 @@
 `python clustering.py`\
 Check out result.
 
-TO FIX: All images being assigned in the same cluster.
+To do: ML Model testing.
 
 Workflow
 
