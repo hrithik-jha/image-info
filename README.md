@@ -9,7 +9,7 @@
 `python vid2img.py`\
 `cd ..`\
 `cd processing`\
-`python clustering.py`\
+`python distancing.py`\
 Check out result.
 
 To do: ML Model testing.
