@@ -3,7 +3,7 @@ from scipy.cluster.hierarchy import fclusterdata
 from os import walk
 import cv2
 
-path = "C:\\Users\\Hrithik Jha\\image-info\\video-extraction\\data"
+path = "C:\\Users\\Abhay\\Desktop\\Image processing\\image-info\\data"
 
 index = {}
 images = {}

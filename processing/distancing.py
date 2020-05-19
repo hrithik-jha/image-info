@@ -21,7 +21,7 @@ def createClusters():
     src = [[], [], []]
     results = [{}, {}, {}]
 
-    path = "C:\\Users\\Hrithik Jha\\image-info\\video-extraction\\data"
+    path = "C:\\Users\\Abhay\\Desktop\\Image processing\\image-info\\data"
 
     f = []
     for (dirpath, dirnames, filenames) in walk(path):
@@ -79,7 +79,7 @@ def createClusters():
 #results = sorted([(v, k) for (k, v) in results.items()], reverse = reverse)
 #print(src)
 #print(images)
-
+createClusters()
 '''
 THIS IS THE CURRENT CLUTERING ARRANGEMENT
 IT NEEDS TO BE AUTOMATED
