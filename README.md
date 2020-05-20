@@ -1,21 +1,13 @@
 # Thumbnail Personalization
 
 ## Running
-### With Pipeline
-`python main.py`
+Currently all facets of the program are set for 3 clusters. \
+If the number of clusters has to be changes, change should be introduced in `processing/distancing.py`, `model/predict.py` and the shell scripts in processing.
 
-### Without Pipeline
-`cd video-extraction`\
-`python vid2img.py`\
-`cd ..`\
-`cd processing`\
-`python distancing.py`\
-Check out result.
+## Steps
+1. Run the `vid2img.py` program to partition video into frames.
+2. Execute `processing/distancing.py` to perform frame clustering and create individual file clusters.
+3. Find the predictions using `model/predict.py` for all files in a cluster. Output can be sanitised.
 
-To do: ML Model testing.
-
-Workflow
-
-  - Train a neural network to identify the genre from the image. [Refrence](https://towardsdatascience.com/building-a-movie-genre-classifier-using-a-dataset-created-using-google-images-4752f75a1d79)
-  - manually get different kinds of thumbnails for a few movies.
-  - According to the user's prefrence of genres the neural network will classify the genre for a particaular movie and show the thumbnail     most suitable for the user.
+## Todo
+MASSIVE to-do, improve classifier. For visually different images, the classifier is very inaccurate in predicting a genre. Otherwise, allow more than 3 properties to show and choose the ones which are different for each cluster.
