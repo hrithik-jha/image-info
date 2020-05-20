@@ -6,6 +6,8 @@ import argparse
 import glob
 import cv2
 from os import walk
+import os.path
+import shutil
 import random
 
 def createClusters():
@@ -70,11 +72,14 @@ def createClusters():
         results[ptr][k] = d
         print(k, " goes to ", ptr)
         src[ptr].append(loc[k])
+        dirLoc = "cluster-" + str(ptr) + "/"
+        print(dirLoc, loc[k])
+        shutil.copy(loc[k], dirLoc)
         print("--------------------------------------------------------")
 
-    return src
+    return
 
-
+createClusters()
 # sort the results
 #results = sorted([(v, k) for (k, v) in results.items()], reverse = reverse)
 #print(src)

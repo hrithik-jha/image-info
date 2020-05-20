@@ -2,6 +2,7 @@ from keras.preprocessing import image
 from keras.models import model_from_json
 import pandas as pd
 import numpy as np
+from os import walk
 
 TARGET = 'img/barry.jpg'
 
@@ -16,7 +17,7 @@ def predictGenre(tar=TARGET):
 
     loaded_model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-    train = pd.read_csv('./dataset/train.csv')
+    train = pd.read_csv('./train.csv')
 
     img = image.load_img(tar ,target_size=(200,200,3))
     img = image.img_to_array(img)
@@ -30,4 +31,16 @@ def predictGenre(tar=TARGET):
     for i in range(3):
         print("{}".format(classes[top_3[i]])+" ({:.3})".format(proba[0][top_3[i]]))
 
-predictGenre()
+if __name__ == "__main__":
+    for i in range(3):
+        f = []
+        print("Cluster", i)
+        patho = "../processing/cluster-" + str(i)
+        for (dirpath, dirnames, filenames) in walk(patho):
+            f.extend(filenames)
+            break
+        print(f)
+        for gg in f:
+            pathImg = patho + '/' + str(gg)
+            print(pathImg)
+            predictGenre(pathImg)

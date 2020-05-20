@@ -1,1 +1,5 @@
 video-extraction/data
+processing/cluster-0
+processing/cluster-1
+processing/cluster-2
+*__pycache__
