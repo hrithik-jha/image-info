@@ -2,7 +2,7 @@
 import cv2 
 import os 
 
-LOC = 'F:\HexChat\config\scrollback\servlog\lp\lpgmfh.mp4'
+LOC = 'video.mp4'
 
 try: 
     # creating a folder named data 

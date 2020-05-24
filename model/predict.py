@@ -5,6 +5,11 @@ import numpy as np
 from os import walk
 
 TARGET = 'img/barry.jpg'
+# result=open('result.txt','a')
+# genre=open('genre.txt','a')
+
+result={}
+genre={}
 
 def predictGenre(tar=TARGET):
     json_file = open('model.json', 'r')
@@ -28,13 +33,20 @@ def predictGenre(tar=TARGET):
     classes = np.array(train.columns[2:])
     proba = loaded_model.predict(img.reshape(1,200,200,3))
     top_3 = np.argsort(proba[0])[:-4:-1]
+    genreClass=[]
+    genreProb=[]
     for i in range(3):
-        print("{}".format(classes[top_3[i]])+" ({:.3})".format(proba[0][top_3[i]]))
+        #print("{}".format(classes[top_3[i]])+" ({:.3})".format(proba[0][top_3[i]]))
+        genreClass.append(classes[top_3[i]])
+        genreProb.append(proba[0][top_3[i]])
+    return genreClass,genreProb
 
 if __name__ == "__main__":
+    
     for i in range(3):
         f = []
         print("Cluster", i)
+        result["Cluster-"+str(i)]={}
         patho = "../processing/cluster-" + str(i)
         for (dirpath, dirnames, filenames) in walk(patho):
             f.extend(filenames)
@@ -43,4 +55,10 @@ if __name__ == "__main__":
         for gg in f:
             pathImg = patho + '/' + str(gg)
             print(pathImg)
-            predictGenre(pathImg)
+            classes,prob=predictGenre(pathImg)
+            for j in range(0,len(classes)):
+                if classes[j] in result["Cluster-"+str(i)].keys():
+                    result["Cluster-"+str(i)][classes[j]]=result["Cluster-"+str(i)][classes[j]]+prob[j]
+                else:
+                    result["Cluster-"+str(i)][classes[j]]=0
+    print(result)
