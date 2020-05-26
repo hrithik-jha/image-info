@@ -23,7 +23,7 @@ def createClusters():
     src = [[], [], []]
     results = [{}, {}, {}]
 
-    path = "../vide-extraction/data"
+    path = "../video-extraction/data"
 
     f = []
     for (dirpath, dirnames, filenames) in walk(path):
