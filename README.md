@@ -9,5 +9,5 @@ If the number of clusters has to be changes, change should be introduced in `pro
 2. Execute `processing/distancing.py` to perform frame clustering and create individual file clusters.
 3. Find the predictions using `model/predict.py` for all files in a cluster. Output can be sanitised.
 
-## Todo
-MASSIVE to-do, improve classifier. For visually different images, the classifier is very inaccurate in predicting a genre. Otherwise, allow more than 3 properties to show and choose the ones which are different for each cluster.
+## To-do
+Allow more than 3 properties to show and choose the ones which are different for each cluster.
